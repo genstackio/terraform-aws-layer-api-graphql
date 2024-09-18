@@ -7,3 +7,6 @@ output "name" {
 output "id" {
   value = aws_appsync_graphql_api.regional.id
 }
+output "endpoint" {
+  value = "https://${aws_appsync_domain_name.regional.domain_name}/graphql"
+}

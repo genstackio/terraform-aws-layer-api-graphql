@@ -7,3 +7,6 @@ output "name" {
 output "id" {
   value = module.regional-api.id
 }
+output "endpoint" {
+  value = module.regional-api.endpoint
+}
