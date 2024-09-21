@@ -1,6 +1,18 @@
+data aws_region "current" {
+}
+
 resource "aws_appsync_graphql_api" "regional" {
-  authentication_type = "API_KEY"
+  authentication_type = var.user_pool_id != null ? "AMAZON_COGNITO_USER_POOLS" : "API_KEY"
   name                = var.name
+
+  dynamic "user_pool_config" {
+    for_each = var.user_pool_id != null ? {k: { user_pool_id = var.user_pool_id }} : {}
+    content {
+      aws_region     = data.aws_region.current.name
+      default_action = "DENY"
+      user_pool_id   = user_pool_config.value.user_pool_id
+    }
+  }
 }
 
 resource "aws_appsync_domain_name" "regional" {
