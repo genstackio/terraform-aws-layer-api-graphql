@@ -13,3 +13,7 @@ variable "user_pool_id" {
   type    = string
   default = null
 }
+variable "schema" {
+  type    = string
+  default = null
+}

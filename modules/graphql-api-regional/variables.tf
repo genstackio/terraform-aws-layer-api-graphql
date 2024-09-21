@@ -13,3 +13,7 @@ variable "dns_zone" {
   type    = string
   default = null
 }
+variable "schema" {
+  type    = string
+  default = null
+}

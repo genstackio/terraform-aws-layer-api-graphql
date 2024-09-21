@@ -5,6 +5,8 @@ resource "aws_appsync_graphql_api" "regional" {
   authentication_type = var.user_pool_id != null ? "AMAZON_COGNITO_USER_POOLS" : "API_KEY"
   name                = var.name
 
+  schema = var.schema
+
   dynamic "user_pool_config" {
     for_each = var.user_pool_id != null ? {k: { user_pool_id = var.user_pool_id }} : {}
     content {
@@ -12,6 +14,10 @@ resource "aws_appsync_graphql_api" "regional" {
       default_action = "DENY"
       user_pool_id   = user_pool_config.value.user_pool_id
     }
+  }
+
+  lifecycle {
+    ignore_changes = [schema]
   }
 }
 
