@@ -5,6 +5,7 @@ module "regional-api" {
   dns          = var.dns
   dns_zone     = var.dns_zone
   user_pool_id = var.user_pool_id
+  schema       = var.schema
 
   providers    = {
     aws     = aws
