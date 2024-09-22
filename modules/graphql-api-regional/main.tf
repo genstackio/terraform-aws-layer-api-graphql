@@ -16,9 +16,9 @@ resource "aws_appsync_graphql_api" "regional" {
     }
   }
 
-  lifecycle {
-    ignore_changes = [schema]
-  }
+  #lifecycle {
+  #  ignore_changes = [schema]
+  #}
 }
 
 resource "aws_appsync_domain_name" "regional" {
